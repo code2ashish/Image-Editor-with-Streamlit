@@ -103,7 +103,7 @@ if image_file is not None:
                     
                 with open('Download_filters.png' , 'rb') as opened_image:
                     btn = st.download_button(
-                        label="Download image",
+                        label="Download Image",
                         data=opened_image,
                         file_name="Download.jpg",
                         mime="image/png")
@@ -121,7 +121,7 @@ if image_file is not None:
 
     transform_image = processimage
 
-    c1 ,c2 = st.columns(2)
+    c1 ,c2, c3 = st.columns(3)
 
     with c1:
 
@@ -129,8 +129,10 @@ if image_file is not None:
         if transformation:
 
             for t in transformation:
+                c ,r = transform_image.shape[1],transform_image.shape[0]
+
                 if t== 'Rotation':
-                    c ,r = transform_image.shape[1],transform_image.shape[0]
+                    
 
                     rot  = st.slider('Rotation Angle', min_value=-90, max_value= 90, value= 0)
                     M = cv2.getRotationMatrix2D((c//2,r//2),rot,1) 
@@ -139,7 +141,7 @@ if image_file is not None:
                     transform_image = cv2.warpAffine(transform_image,M,(c,r)) 
 
                     # transform_image = cv2.cvtColor(transform_image , cv2.COLOR_BGR2RGB)
-                    cols ,rows =c , r
+                   
 
                     transform_flag = True
 
@@ -150,7 +152,7 @@ if image_file is not None:
                 if t== 'Resize':
                     resize_facor  = st.slider('Resize', min_value=10, max_value= 200, value= 100)
 
-                    transform_image = cv2.resize(transform_image , (cols*resize_facor//100 ,rows*resize_facor//100 ))
+                    transform_image = cv2.resize(transform_image , (c*resize_facor//100 ,r*resize_facor//100 ))
                     
                     transform_flag = True
 
@@ -158,19 +160,20 @@ if image_file is not None:
 
 
                 if t== 'Crop':
-                    X1  = st.slider('Start: x', min_value=0, max_value= rows, value= 0)
-                    height = st.slider('Height', min_value=0, max_value= rows, value= rows)
+                    X1  = st.slider('Start: x', min_value=0, max_value= r, value= 0)
+                    height = st.slider('Height', min_value=0, max_value= r, value= r)
 
-                    X2 = st.slider('Start: y', min_value=0, max_value= cols, value= 0)
-                    width = st.slider('Width', min_value=0, max_value= cols, value= cols)
+                    X2 = st.slider('Start: y', min_value=0, max_value= c, value= 0)
+                    width = st.slider('Width', min_value=0, max_value= c, value= c)
 
                     transform_image = transform_image[X1:X1+height , X2:X2+width]
                     
                     
 
                     transform_flag = True
-
     with c2:
+        pass
+    with c3:
     
 
             if transform_flag:
@@ -185,7 +188,7 @@ if image_file is not None:
                     
                 with open('Download_trans.png' , 'rb') as opened_image:
                     btn = st.download_button(
-                        label="Download final image",
+                        label="Download Final Image",
                         data=opened_image,
                         file_name="Download.jpg",
                         mime="image/png")
