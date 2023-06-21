@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 import io
 # Set the title of the app
-st.title('Image Uploader')
+st.title('🌄Image Editor')
 
 # Create a file upload widget
 image_file = st.file_uploader('Upload an image', type=['jpg', 'png'])
