@@ -106,6 +106,8 @@ if image_file is not None:
                         data=opened_image,
                         file_name="Download.jpg",
                         mime="image/png")
+                if btn :
+                    st.balloons()
             
                 # st.download_button(Image.fromarray(processimage),"Download.png", )
     
@@ -191,4 +193,6 @@ if image_file is not None:
                         data=opened_image,
                         file_name="Download.jpg",
                         mime="image/png")
+                if btn :
+                    st.balloons()
             
