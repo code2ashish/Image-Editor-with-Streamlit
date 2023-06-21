@@ -5,6 +5,8 @@ import numpy as np
 import cv2
 # Set the title of the app
 st.title('🌄Image Editor')
+st.write('''    Welcome to the image editor that lets you transform your photos with filters and transformations.
+Add a touch of creativity with filters like greyscale, blur, and brightness, or transform your photos with resize, rotation, and crop.''')
 
 # Create a file upload widget
 image_file = st.file_uploader('Upload an image', type=['jpg', 'png'])
